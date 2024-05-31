@@ -51,7 +51,7 @@ def createPlaylist(sp, playlist_name, genres, artists, country):
 
     """
 
-    user_id = os.getenv('AUDIOALLY_UID')
+    user_id = '31k5hqmptx5ff67jew6ttedoqd3u'
 
     playlist = sp.user_playlist_create(user_id, playlist_name, public=True)
 
