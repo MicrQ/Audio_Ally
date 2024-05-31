@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About us</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/about.css') }}">
+    <link href='https://fonts.googleapis.com/css?family=JetBrains Mono' rel='stylesheet'>
+</head>
+<body>
+    <header class="header">
+        <a href="{{ url_for('index') }}">AudioAlly</a>
+        <div class="divbar">
+            <a href="#">About</a>
+            <a href="{{ url_for('contact_us') }}">Contact us</a>
+        </div>
+    </header>
+    <br>
+    <section class="param">
+        <h1>About Audio Ally</h1>
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+            Explicabo, quisquam! Libero, distinctio voluptates? Inventore beatae ab vitae iusto provident, quidem modi sapiente libero necessitatibus facilis tempora eum molestiae error recusandae?
+        </p>
+        <p>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Assumenda libero placeat, aperiam minima quidem error non quia facilis sed dignissimos quae. Non beatae earum, soluta amet necessitatibus veritatis laudantium sunt.
+            A vel aspernatur blanditiis, nobis assumenda consequuntur neque dignissimos magni officia, placeat optio hic recusandae iste fugit illum? Dignissimos commodi cupiditate reiciendis praesentium consequatur ratione placeat labore natus laudantium nulla!
+        </p>
+        <p>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusantium officiis tenetur magnam autem corporis provident eum dolor incidunt voluptas quaerat nobis, velit iure quisquam pariatur nisi enim deleniti, harum unde?
+        </p>
+    </section>
+    <div class="banner">
+        <p>Revolution of Song <br>Recommendation</p>
+    </div>
+    <section>
+        <h2>Meet The TEAM</h2>
+        <div class="team">
+            <figure>
+                <img src=" {{ url_for('static', filename='img/Dev Abenet.jfif') }}" alt="" loading="lazy">
+                <figcaption>Abenet Gebre<br>Backend-Engineer</figcaption>
+            </figure>
+            <figure>
+                <img src=" {{ url_for('static', filename='img/curtis-potvin.jpg') }}" alt="" loading="lazy">
+                <figcaption>Ezenagu Chinemerem<br>Backend-Engineer</figcaption>
+            </figure>
+            <figure>
+                <img src="{{ url_for('static', filename='img/Lawson_v1.jpg') }}" alt="" loading="lazy">
+                <figcaption>Lawson Omoregbee<br>Frontend-Engineer</figcaption>
+            </figure>
+        </div>
+    </section>
+    <footer class="footer__nav">
+        Copyright &copy;AudioAlly 2024
+    </footer>
+</body>
+</html>
