@@ -13,8 +13,8 @@ def create_connection():
             Spotify: A Spotify object representing the connection to the API.
             None: If the client ID or client secret is missing.
     """
-    client_id = getenv("AUDIOALLY_CI")
-    client_secret = getenv("AUDIOALLY_CS")
+    client_id = '2840ca3775034b2b9bc3630cb3b492a2'
+    client_secret = '3749d7467e5b42afaddaec1576b863bb'
     scope = 'playlist-modify-public'
 
     if client_id is None or client_secret is None:
