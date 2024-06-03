@@ -23,7 +23,7 @@ def create_connection():
     auth = SpotifyOAuth(client_id=client_id,
                         client_secret=client_secret,
                         scope=scope,
-                        redirect_uri="http://localhost:5000/callback")
+                        redirect_uri="https://audio-ally.vercel.app/callback")
     # print(auth)
     sp = Spotify(auth_manager=auth)
     # print(sp)
