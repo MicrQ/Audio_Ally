@@ -34,11 +34,11 @@
                                 <div class="title">Generate songs</div>
                                 <div data-close-button class="close-button">&times;</div>
                             </div>
-                            
+        
                             <!-- Implement Jinja template to request an api call to Spotify to get the entire Genre Lists -->
-                            
+        
                             <div class="modal-body" style="background-color: antiquewhite;">
-                                <form action="{{ url_for('login') }}" method="post">
+                                <form action="{{ url_for('create_playlist') }}" method="post">
                                     <label for="fav-artist">Favorite Artists:</label>
                                     <input type="text" id="fav-artist" name="fav-artist" placeholder="Drake, Lil Baby, Future..."><br>
                                     Select Genres <br>
