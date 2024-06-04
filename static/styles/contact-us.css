@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Montserrat", sans-serif;
+}
+
+nav, li, a {
+    text-decoration: none;
+}
+
+li a, header a {
+    color: #333333;
+    font-weight: bold;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 10%;
+    font-family: "Montserrat", monospace, serif;
+    font-weight: 500;
+    background-color: #EEE5E9;
+}
+
+.nav__links {
+    list-style-type: none;
+}
+
+.nav__links li {
+    display: inline-block;
+    padding: 0px 20px;
+}
+
+.nav__links li a {
+    transition: all 0.3s ease 0s;
+}
+
+.header a:hover, .nav__links li a:hover {
+    color: #0088a9;
+}
+
+/* body {
+    background-color: #f5f5f5;
+} */
+
+main p{
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+h1{
+    text-align: center;
+    padding-bottom: 20px;
+    padding-top: 20px;
+}
+
+
+.container {
+    width: 80%;
+    /* max-width: 800px; */
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.container h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+form input, form textarea {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #f7f7f7;
+    color: #333;
+}
+
+form input:focus, form textarea:focus {
+    outline: none;
+    box-shadow: 0 0 5px #333;
+}
+
+form button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #333;
+    color: #fff;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+form button:hover {
+    background-color: #555;
+}
+
+.footer__nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 25px;
+    font-weight: 100;
+    font-size: 12px;
+    margin-top: 25px;
+    background-color: #EEE5E9;
+}

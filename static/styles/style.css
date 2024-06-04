@@ -114,9 +114,12 @@ figure figcaption {
 }
 
 button {
-    border-radius: 0;
-    width: fit-content;
+    border: none;
+    /* width: fit-content; */
+    border-radius: 7px;
     height: 30px;
+    padding: 6px 16px;
+    background-color: #3bbb3b;
     font-family: "JetBrains Mono";
 }
 
