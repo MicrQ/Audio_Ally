@@ -1,43 +1,104 @@
 #!/usr/bin/python3
 """ The Flask App and all routes """
 
-from flask import Flask, render_template, request
-from api_connection import create_connection
-from operations import createPlaylist
+from flask import Flask, render_template, request, redirect, url_for, session
+import urllib.parse
+import requests
+from datetime import datetime
+
 
 app = Flask(__name__)
 app.url_map.strict_slashes = False
+app.secret_key = 'secret-1234-kkey'
+
+CLIENT_ID = "353a825794154825a13fcedf9e8f4296"
+CLIENT_SECRET = "14c6909a230b450cbe16c855e0e23363"
+
+AUTH_URL = 'https://accounts.spotify.com/authorize'
+TOKEN_URL = 'https://accounts.spotify.com/api/token'
+API_URL = 'https://api.spotify.com/v1/'
+REDIRECT_URI ='https://audio-ally.vercel.app/callback'
 
 
-sp = create_connection()
+playlist_data = {}
 
 
 @app.route('/')
-@app.route('/home', methods=['GET'])
+@app.route('/home')
 def index():
     """ the main page """
     return render_template('index.html')
 
 
-@app.route('/create_playlist', methods=['POST'])
+@app.route('/login', methods=['POST'])
+def login():
+    playlist_data['genres'] = request.form.getlist('genre')
+    playlist_data['playlist_name'] = request.form.get('playlist_name')
+    playlist_data['artist'] = request.form.get('fav-artist')
+    playlist_data['country'] = request.form.get('country-selector')
+
+    scope = "user-read-private user-read-email playlist-modify-public playlist-modify-private"
+
+    params = {
+        'client_id': CLIENT_ID,
+        'response_type': 'code',
+        'redirect_uri': REDIRECT_URI,
+        'scope': scope
+    }
+
+    auth_url = f"{AUTH_URL}?{urllib.parse.urlencode(params)}"
+
+    return redirect(auth_url)
+
+@app.route('/callback')
+def callback():
+    if 'error' in request.args:
+        return render_template('result.html',
+                               message="Error: " + request.args.get('error'))
+
+    if 'code' in request.args:
+        req_body = {
+            'code': request.args.get('code'),
+            'grant_type': 'authorization_code',
+            'redirect_uri': REDIRECT_URI,
+            'client_id': CLIENT_ID,
+            'client_secret': CLIENT_SECRET
+        }
+
+        response = requests.post(TOKEN_URL, data=req_body)
+        token_info = response.json()
+
+        session['access_token'] = token_info.get('access_token')
+
+        return redirect(url_for('create_playlist'))
+    return render_template('result.html',
+                           message="Failed to login with Spotify!")
+    
+
+@app.route('/create_playlist')
 def create_playlist():
     """ a route used to create a playlist with the given data """
-    genres = request.form.getlist('genre')
-    playlist_name = request.form.get('playlist_name')
-    artist = request.form.get('fav-artist')
-    country = request.form.get('country-selector')
+    genres = playlist_data['genres']
+    artist = playlist_data['artist']
+    country = playlist_data['country']
 
-    if len(genres) == 0 and len(artist) == 0:
-        return "<p> you need to select at least one genre or enter artist name </p>"
+    headers = {
+        'Authorization': f'Bearer {session["access_token"]}',
+        'Content-Type': 'application/json'
+    }
 
-    if playlist_name == '':
-        return "<p> playlist name must be given </p>"
+    playlits_json = {
+        'name': playlist_data['playlist_name'],
+        'public': True
+    }
 
+    res = requests.post(API_URL + 'me/playlists',
+                        json=playlits_json, headers=headers)
+    if res.status_code != 201:
+        return render_template('result.html', message=res.text)
 
-    playlist_link = createPlaylist(sp, playlist_name, genres, artist, country)
-    if playlist_link is None:
-        return "<h3>invalid option selected</h3>"
-    return "<p>link to your playlist <a href='{}'>here</a></p>".format(playlist_link)
+    return render_template('result.html',
+                           playlist_link=res.json()['external_urls']['spotify'])
 
 
 @app.route('/contact_us', methods=['GET'])
