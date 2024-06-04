@@ -11,8 +11,8 @@ app = Flask(__name__)
 app.url_map.strict_slashes = False
 app.secret_key = 'secret-1234-kkey'
 
-CLIENT_ID = "353a825794154825a13fcedf9e8f4296"
-CLIENT_SECRET = "14c6909a230b450cbe16c855e0e23363"
+CLIENT_ID = "2840ca3775034b2b9bc3630cb3b492a2"
+CLIENT_SECRET = "3749d7467e5b42afaddaec1576b863bb"
 
 AUTH_URL = 'https://accounts.spotify.com/authorize'
 TOKEN_URL = 'https://accounts.spotify.com/api/token'
