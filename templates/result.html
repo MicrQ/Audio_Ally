@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/result.css') }}">
+    <title>Result</title>
+</head>
+<body>
+    <header class="header">
+        <a href="{{ url_for('index') }}">AudioAlly</a>
+        <nav class="divbar">
+            <ul class="nav__links">
+                <li><a href="{{ url_for('index') }}">Home</a></li>
+                <li><a href="{{ url_for('about') }}">About</a></li>
+                <li><a href="{{ url_for('contact_us')}}">Contact us</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container">
+        <img src="{{ url_for('static', filename='img/spotify-logo.jpg') }}" alt="">
+        <p>
+        {% if playlist_link %}
+            <a href="{{ playlist_link }}" style="text-decoration: underline;">
+                Here</a> is Your created playlist
+        {% else %}
+            <span style="color: red;">{{ message }}</span>
+        {% endif %}
+        </p>
+        <div class="next">
+            <!-- <button class="share">Share</button> -->
+            <a href="{{ url_for('index') }}">Generate Again</a>
+        </div>
+    </div>
+    <footer class="footer__nav">
+        Copyright &copy;AudioAlly 2024
+    </footer>
+</body>
+</html>

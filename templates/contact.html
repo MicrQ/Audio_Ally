@@ -3,9 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/contact-us.css') }}">
     <title>Contact Us</title>
 </head>
 <body>
-    <H1>MEN AT WORK</H1>
+    <header class="header">
+        <a href="{{ url_for('index') }}">AudioAlly</a>
+        <nav class="divbar">
+            <ul class="nav__links">
+                <li><a href="{{ url_for('index') }}">Home</a></li>
+                <li><a href="{{ url_for('about') }}">About</a></li>
+                <li><a href="{{ url_for('contact_us') }}">Contact us</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1>Contact Us</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita, placeat! Porro voluptatum tenetur iusto recusandae ad laboriosam numquam explicabo incidunt, cumque hic est, modi sunt doloremque necessitatibus itaque quisquam voluptas.</p>
+    </main>
+    <div class="container">
+        <h2>SEND US A MESSAGE</h2>
+        <form action="/test.json">
+            <input type="text" name="name" id="user_name" placeholder="Your Name">
+            <input type="email" name="mail" id="user_email" placeholder="Your email">
+            <textarea name="msg" id="user_message" placeholder="Your message"></textarea>
+            <button type="submit">SEND</button>
+        </form>
+    </div>
+    <footer class="footer__nav">
+        Copyright &copy;AudioAlly 2024
+    </footer>
 </body>
 </html>
